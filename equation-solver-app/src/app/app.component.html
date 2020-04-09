@@ -1,0 +1,30 @@
+<div class="container-fluid">
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Equation Solver</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <button class="nav-link btn btn-light" (click)=generateRandomEquation()>Generate random equation</button>
+            </li>
+            <li>
+                <label>
+                    Min :
+                    <input [(ngModel)]="randomMinDigit" class="form-control" type="number" step="1">
+                </label>
+            </li>
+            <li>
+                <label>
+                    Max :
+                    <input [(ngModel)]="randomMaxDigit" class="form-control" type="number" step="1">
+                </label>
+            </li>
+          </ul>
+        </div>
+    </nav>
+
+    <app-equation-list [equations]="this.randomEquation"></app-equation-list>
+</div>
