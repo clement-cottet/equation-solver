@@ -1,0 +1,24 @@
+<div class="row">
+    <button class="btn btn-primary" (click)=generateRandomEquation()>Générer un nouvelle équation aléatoirement</button>
+    <label>
+        Minimum :
+        <input [(ngModel)]="randomMinDigit" class="form-control" type="number" step="1">
+    </label>
+    <label>
+        Maximum :
+        <input [(ngModel)]="randomMaxDigit" class="form-control" type="number" step="1">
+    </label>
+    <button (click)="applyValueToEquation('+')" type="button" class="btn btn-success">+</button>
+    <button (click)="applyValueToEquation('-')" type="button" class="btn btn-success">-</button>
+    <button (click)="applyValueToEquation('*')" type="button" class="btn btn-success">X</button>
+    <button (click)="applyValueToEquation('/')" type="button" class="btn btn-success">/</button>
+    <label>
+        Valeur :
+        <input [(ngModel)]="valueToApply" class="form-control" type="number">
+    </label>
+    <label>
+        Appliquer sur les x ?
+        <input [(ngModel)]="xValue" type="checkbox">
+    </label>
+</div>
+<app-equation-list [equations]="this.equationList" [operations]="this.operationList"></app-equation-list>

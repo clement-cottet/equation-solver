@@ -1,3 +1,7 @@
 .equation-element {
     font-size: 3em;
 }
+
+.equation-operation {
+    color: green;
+}

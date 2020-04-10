@@ -9,6 +9,7 @@ import { Equation } from '../equation';
 export class EquationListComponent implements OnInit {
 
   @Input() equations: Equation[];
+  @Input() operations: String[];
 
   constructor() { }
 

@@ -1,3 +1,3 @@
-<div *ngFor="let equation of this.equations">
-    <app-equation [equation]="equation"></app-equation>
+<div *ngFor="let equation of this.equations; let index = index;">
+    <app-equation [equation]="equation" [operation]="this.operations[index]"></app-equation>
 </div>

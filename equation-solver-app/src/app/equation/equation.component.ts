@@ -8,12 +8,8 @@ import { Equation } from '../equation';
 })
 export class EquationComponent implements OnInit {
 
-  @Input() equation: Equation = {
-    rightDigit: 4,
-    rightXDigit: 5,
-    leftDigit: 6,
-    leftXDigit: 7
-  };
+  @Input() equation: Equation;
+  @Input() operation: String;
 
   constructor() { }
 
