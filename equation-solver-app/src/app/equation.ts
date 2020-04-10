@@ -20,7 +20,7 @@ export class Equation implements EquationInterface {
         this.leftXDigit = equation.leftXDigit;
     }
 
-    clone() {
+    clone(): Equation {
         let clonedEquation: Equation = new Equation({
             rightDigit: this.rightDigit,
             rightXDigit: this.rightXDigit,
@@ -64,5 +64,19 @@ export class Equation implements EquationInterface {
             this.rightDigit /= value;
             this.leftDigit /= value;
         }
+    }
+
+    isSolved(): boolean {
+        if (this.rightXDigit == 1) {
+            if (this.rightDigit == 0 && this.leftXDigit == 0) {
+                return true;
+            }
+        }
+        if (this.leftXDigit == 1) {
+            if (this.leftDigit == 0 && this.rightXDigit == 0) {
+                return true;
+            }
+        }
+        return false;
     }
 }

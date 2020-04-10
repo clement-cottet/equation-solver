@@ -11,7 +11,7 @@ export class RandomEquationSolverComponent implements OnInit {
   randomEquation: Equation;
   equationList: Equation[];
   randomMinDigit: number = -10;
-  randomMaxDigit: number = 50;
+  randomMaxDigit: number = 10;
   valueToApply: number = 1;
   xValue: boolean = false;
   operationList: String[];
@@ -46,6 +46,10 @@ export class RandomEquationSolverComponent implements OnInit {
     this.equationList.push(clonedRandomEquation);
     this.randomEquation = clonedRandomEquation;
     this.operationList.push(operation + ' ' + this.valueToApply + (this.xValue ? 'x' : ''));
+
+    if (this.randomEquation.isSolved()) {
+      alert("Bravo ! Tu as résolu l'équation !");
+    }
   }
 
 }
