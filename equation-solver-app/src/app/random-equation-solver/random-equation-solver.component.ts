@@ -12,6 +12,7 @@ export class RandomEquationSolverComponent implements OnInit {
   equationList: Equation[];
   randomMinDigit: number = -10;
   randomMaxDigit: number = 10;
+  valueToApplyText: String = '1';
   valueToApply: number = 1;
   xValue: boolean = false;
   operationList: String[];
@@ -32,7 +33,33 @@ export class RandomEquationSolverComponent implements OnInit {
     this.operationList = [''];
   }
 
+  transformApplyValueText() {
+    if (this.valueToApplyText.match(/^[-]{0,1}\d*x{0,1}$/)) {
+      let regex = /([-]{0,1})(\d*)(x{0,1})/;
+      let regexFound = this.valueToApplyText.match(regex);
+      let digit = null;
+      if (regexFound[2]) {
+        digit = parseInt(regexFound[1] + regexFound[2]);
+      } else if (regexFound[1] && !regexFound[2]) {
+        digit = -1;
+      } else if (regexFound[3] && !regexFound[2]) {
+        digit = 1;
+      }
+      if (digit) {
+        this.xValue = regexFound[3] == 'x';
+        this.valueToApply = digit;
+      } else {
+        alert("La valeur donnée n'est pas valide");
+      }
+    } else {
+      alert("La valeur donnée n'est pas valide");
+    }
+  }
+  
   applyValueToEquation(operation) {
+    // Calcul valueToApply from valueToApplyText
+    this.transformApplyValueText();
+
     let clonedRandomEquation: Equation = this.randomEquation.clone();
     if (operation == '+') {
       clonedRandomEquation.applyAddition(this.valueToApply, this.xValue);
