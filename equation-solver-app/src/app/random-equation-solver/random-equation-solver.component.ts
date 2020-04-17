@@ -33,6 +33,12 @@ export class RandomEquationSolverComponent implements OnInit {
     this.operationList = [''];
   }
 
+  resetEquation() {
+    this.randomEquation = this.equationList[0];
+    this.operationList = [''];
+    this.equationList = [this.randomEquation];
+  }
+
   transformApplyValueText(): boolean {
     if (this.valueToApplyText.match(/^[-]{0,1}\d*x{0,1}$/)) {
       let regex = /([-]{0,1})(\d*)(x{0,1})/;
