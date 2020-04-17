@@ -40,6 +40,9 @@ export class EquationComponentComponent implements OnInit {
         this.operation = null;
       }
     }
+    if (this.digitContent == 0) {
+      this.operation = null;
+    }
   }
 
 }
