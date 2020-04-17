@@ -1,8 +1,8 @@
-.equation-element {
-    font-size: 3em;
-    text-align: center;
+.equation-operation {
+    display: inline-block;
 }
 
-.equation-operation {
-    color: green;
+:host {
+    font-size: 2em;
+    text-align: center;
 }

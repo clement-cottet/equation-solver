@@ -14,6 +14,7 @@ export class EquationComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }

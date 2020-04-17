@@ -1,0 +1,4 @@
+<span *ngIf="!isXPart" class="equation-element">{{sign}}</span>
+<span class="equation-element">{{transformedContent}}</span>
+<span *ngIf="isXPart && this.transformedContent.length > 0" class="equation-element">x</span>
+<span class="equation-element operation-element">{{operation}}</span>

@@ -1,0 +1,12 @@
+.equation-element {
+    display: inline-block;
+    margin: 10px;
+}
+
+.operation-element {
+    color: blue;
+}
+
+:host {
+    display: inline-block;
+}

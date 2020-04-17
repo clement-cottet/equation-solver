@@ -33,7 +33,7 @@ export class RandomEquationSolverComponent implements OnInit {
     this.operationList = [''];
   }
 
-  transformApplyValueText() {
+  transformApplyValueText(): boolean {
     if (this.valueToApplyText.match(/^[-]{0,1}\d*x{0,1}$/)) {
       let regex = /([-]{0,1})(\d*)(x{0,1})/;
       let regexFound = this.valueToApplyText.match(regex);
@@ -50,33 +50,38 @@ export class RandomEquationSolverComponent implements OnInit {
         this.valueToApply = digit;
       } else {
         alert("La valeur donnée n'est pas valide");
+        return false;
       }
     } else {
       alert("La valeur donnée n'est pas valide");
+      return false;
     }
+    return true;
   }
   
   applyValueToEquation(operation) {
     // Calcul valueToApply from valueToApplyText
-    this.transformApplyValueText();
-
-    let clonedRandomEquation: Equation = this.randomEquation.clone();
-    if (operation == '+') {
-      clonedRandomEquation.applyAddition(this.valueToApply, this.xValue);
-    } else if (operation == '-') {
-      clonedRandomEquation.applySoustraction(this.valueToApply, this.xValue);
-    } else if (operation == '*') {
-      clonedRandomEquation.applyMultiplication(this.valueToApply);
-    } else if (operation == '/') {
-      clonedRandomEquation.applyDivision(this.valueToApply);
+    let isTransformed = this.transformApplyValueText();
+    if (isTransformed) {
+      let clonedRandomEquation: Equation = this.randomEquation.clone();
+      if (operation == '+') {
+        clonedRandomEquation.applyAddition(this.valueToApply, this.xValue);
+      } else if (operation == '-') {
+        clonedRandomEquation.applySoustraction(this.valueToApply, this.xValue);
+      } else if (operation == 'X') {
+        clonedRandomEquation.applyMultiplication(this.valueToApply);
+      } else if (operation == '/') {
+        clonedRandomEquation.applyDivision(this.valueToApply);
+      }
+      this.equationList.push(clonedRandomEquation);
+      this.randomEquation = clonedRandomEquation;
+      this.operationList.splice(this.operationList.length-1, 0, operation + ' ' + this.valueToApply + (this.xValue ? 'x' : ''));
+  
+      if (this.randomEquation.isSolved()) {
+        alert("Bravo ! Tu as résolu l'équation !");
+      }
     }
-    this.equationList.push(clonedRandomEquation);
-    this.randomEquation = clonedRandomEquation;
-    this.operationList.push(operation + ' ' + this.valueToApply + (this.xValue ? 'x' : ''));
 
-    if (this.randomEquation.isSolved()) {
-      alert("Bravo ! Tu as résolu l'équation !");
-    }
   }
 
 }

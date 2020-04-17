@@ -1,12 +1,14 @@
-<div class="row">
-    <div class="col-sm equation-element">{{equation.leftXDigit}}</div>
-    <div class="col-sm equation-element">x</div>
-    <div class="col-sm equation-element">+</div>
-    <div class="col-sm equation-element">{{equation.leftDigit}}</div>
-    <div class="col-sm equation-element">=</div>
-    <div class="col-sm equation-element">{{equation.rightXDigit}}</div>
-    <div class="col-sm equation-element">x</div>
-    <div class="col-sm equation-element">+</div>
-    <div class="col-sm equation-element">{{equation.rightDigit}}</div>
-    <div class="col-sm equation-element equation-operation">{{this.operation}}</div>
+<div class="equation" class="alert" [ngClass]="equation.isSolved() ? 'alert-success' : 'alert-dark'">
+    <app-equation-component [digitContent]="equation.leftXDigit" [isXPart]="true"></app-equation-component>
+    <app-equation-component [digitContent]="equation.leftDigit" [isXPart]="false"></app-equation-component>
+    <app-equation-component></app-equation-component>
+    <app-equation-component [digitContent]="equation.rightXDigit" [isXPart]="true"></app-equation-component>
+    <app-equation-component [digitContent]="equation.rightDigit" [isXPart]="false"></app-equation-component>
+</div>
+<div *ngIf="operation.length > 0" class="equation-operation" class="alert alert-info">
+    <app-equation-component [operation]="operation" [digitContent]="equation.leftXDigit" [isXPart]="true"></app-equation-component>
+    <app-equation-component [operation]="operation" [digitContent]="equation.leftDigit" [isXPart]="false"></app-equation-component>
+    <app-equation-component></app-equation-component>
+    <app-equation-component [operation]="operation" [digitContent]="equation.rightXDigit" [isXPart]="true"></app-equation-component>
+    <app-equation-component [operation]="operation" [digitContent]="equation.rightDigit" [isXPart]="false"></app-equation-component>
 </div>

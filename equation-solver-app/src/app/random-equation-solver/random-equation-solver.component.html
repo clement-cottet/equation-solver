@@ -1,23 +1,25 @@
-<div class="row">
-    <div class="input-group">
-        <button class="btn btn-primary" (click)=generateRandomEquation()>Générer un nouvelle équation aléatoirement</button>
-        <div class="input-group-prepend">
-            <span class="input-group-text">Minimum / Maximum</span>
+<div class="control-bar">
+    <div class="row">
+        <div class="input-group">
+            <button class="btn btn-primary" (click)=generateRandomEquation()>Générer un nouvelle équation aléatoirement</button>
+            <div class="input-group-prepend">
+                <span class="input-group-text">Minimum / Maximum</span>
+            </div>
+            <input [(ngModel)]="randomMinDigit" class="form-control" type="number" step="1">
+            <input [(ngModel)]="randomMaxDigit" class="form-control" type="number" step="1">
         </div>
-        <input [(ngModel)]="randomMinDigit" class="form-control" type="number" step="1">
-        <input [(ngModel)]="randomMaxDigit" class="form-control" type="number" step="1">
     </div>
-</div>
-<div class="row">
-    <div class="input-group">
-        <button (click)="applyValueToEquation('+')" type="button" class="btn btn-success">+</button>
-        <button (click)="applyValueToEquation('-')" type="button" class="btn btn-success">-</button>
-        <button (click)="applyValueToEquation('*')" type="button" class="btn btn-success">X</button>
-        <button (click)="applyValueToEquation('/')" type="button" class="btn btn-success">/</button>
-        <div class="input-group-prepend">
-            <span class="input-group-text">Valeur</span>
+    <div class="row">
+        <div class="input-group">
+            <button (click)="applyValueToEquation('+')" type="button" class="btn btn-success">+</button>
+            <button (click)="applyValueToEquation('-')" type="button" class="btn btn-success">-</button>
+            <button (click)="applyValueToEquation('X')" type="button" class="btn btn-success">X</button>
+            <button (click)="applyValueToEquation('/')" type="button" class="btn btn-success">/</button>
+            <div class="input-group-prepend">
+                <span class="input-group-text">Valeur</span>
+            </div>
+            <input [(ngModel)]="valueToApplyText" class="form-control" type="text">
         </div>
-        <input [(ngModel)]="valueToApplyText" class="form-control" type="text">
     </div>
 </div>
 <app-equation-list [equations]="this.equationList" [operations]="this.operationList"></app-equation-list>
