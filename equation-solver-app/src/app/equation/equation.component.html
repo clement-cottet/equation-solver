@@ -1,14 +1,14 @@
 <div class="equation" class="alert" [ngClass]="equation.isSolved() ? 'alert-success' : 'alert-dark'">
-    <app-equation-component [digitContent]="equation.leftXDigit" [isXPart]="true"></app-equation-component>
-    <app-equation-component [digitContent]="equation.leftDigit" [isXPart]="false"></app-equation-component>
+    <app-equation-component [digitContent]="equation.getLeftXDigit()" [isXPart]="true"></app-equation-component>
+    <app-equation-component [digitContent]="equation.getLeftDigit()" [isXPart]="false"></app-equation-component>
     <app-equation-component></app-equation-component>
-    <app-equation-component [digitContent]="equation.rightXDigit" [isXPart]="true"></app-equation-component>
-    <app-equation-component [digitContent]="equation.rightDigit" [isXPart]="false"></app-equation-component>
+    <app-equation-component [digitContent]="equation.getRightXDigit()" [isXPart]="true"></app-equation-component>
+    <app-equation-component [digitContent]="equation.getRightDigit()" [isXPart]="false"></app-equation-component>
 </div>
 <div *ngIf="operation.length > 0" class="equation-operation" class="alert alert-info">
-    <app-equation-component [operation]="operation" [digitContent]="equation.leftXDigit" [isXPart]="true"></app-equation-component>
-    <app-equation-component [operation]="operation" [digitContent]="equation.leftDigit" [isXPart]="false"></app-equation-component>
+    <app-equation-component [operation]="operation" [digitContent]="equation.getLeftXDigit()" [isXPart]="true"></app-equation-component>
+    <app-equation-component [operation]="operation" [digitContent]="equation.getLeftDigit()" [isXPart]="false"></app-equation-component>
     <app-equation-component></app-equation-component>
-    <app-equation-component [operation]="operation" [digitContent]="equation.rightXDigit" [isXPart]="true"></app-equation-component>
-    <app-equation-component [operation]="operation" [digitContent]="equation.rightDigit" [isXPart]="false"></app-equation-component>
+    <app-equation-component [operation]="operation" [digitContent]="equation.getRightXDigit()" [isXPart]="true"></app-equation-component>
+    <app-equation-component [operation]="operation" [digitContent]="equation.getRightDigit()" [isXPart]="false"></app-equation-component>
 </div>

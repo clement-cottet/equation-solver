@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Equation } from '../equation';
+import { create, all } from 'mathjs';
+
+const config = { };
+const math = create(all, config);
 
 @Component({
   selector: 'app-random-equation-solver',
@@ -40,19 +44,25 @@ export class RandomEquationSolverComponent implements OnInit {
   }
 
   transformApplyValueText(): boolean {
-    if (this.valueToApplyText.match(/^[-]{0,1}\d*x{0,1}$/)) {
-      let regex = /([-]{0,1})(\d*)(x{0,1})/;
+    if (this.valueToApplyText.match(/^[-]{0,1}\d*\/{0,1}\d*x{0,1}$/)) {
+      let regex = /([-]{0,1})(\d*)\/{0,1}(\d*)(x{0,1})/;
       let regexFound = this.valueToApplyText.match(regex);
       let digit = null;
-      if (regexFound[2]) {
+      // If fraction
+      if (regexFound[3]) {
+        digit = math.evaluate(regexFound[1] + regexFound[2] + '/' + regexFound[3]);
+      // If integer 
+      } else if (regexFound[2]) {
         digit = parseInt(regexFound[1] + regexFound[2]);
+      // If just -x
       } else if (regexFound[1] && !regexFound[2]) {
         digit = -1;
-      } else if (regexFound[3] && !regexFound[2]) {
+      // If just x
+      } else if (regexFound[4] && !regexFound[2]) {
         digit = 1;
       }
       if (digit) {
-        this.xValue = regexFound[3] == 'x';
+        this.xValue = regexFound[4] == 'x';
         this.valueToApply = digit;
       } else {
         alert("La valeur donnée n'est pas valide");
@@ -82,7 +92,7 @@ export class RandomEquationSolverComponent implements OnInit {
       this.equationList.push(clonedRandomEquation);
       this.randomEquation = clonedRandomEquation;
       this.operationList.splice(this.operationList.length-1, 0, operation + ' ' + this.valueToApply + (this.xValue ? 'x' : ''));
-  
+
       if (this.randomEquation.isSolved()) {
         alert("Bravo ! Tu as résolu l'équation !");
       }

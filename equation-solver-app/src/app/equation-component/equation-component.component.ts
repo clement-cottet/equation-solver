@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class EquationComponentComponent implements OnInit {
 
-  @Input() digitContent: number = null;
+  @Input() digitContent: string = null;
   @Input() isXPart: boolean;
   @Input() operation: string = null;
 
@@ -20,18 +20,16 @@ export class EquationComponentComponent implements OnInit {
     if (this.digitContent == null) {
       this.transformedContent = '=';
     } else {
-      if (this.digitContent == 0) {
+      if (this.digitContent == '0') {
         this.transformedContent = '';
-      } else if (this.digitContent == 1 && this.isXPart) {
+      } else if (this.digitContent == '1' && this.isXPart) {
         this.transformedContent = ' ';
-      } else if (this.digitContent < 0 && !this.isXPart) {
+      } else if (this.digitContent[0] == '-' && !this.isXPart) {
         this.sign = '-';
-        this.transformedContent = Math.abs(this.digitContent).toLocaleString();
-      } else if (this.digitContent > 0 && !this.isXPart) {
-        this.sign = '+';
-        this.transformedContent = this.digitContent.toLocaleString();
+        this.transformedContent = this.digitContent.substring(1);
       } else {
-        this.transformedContent = this.digitContent.toLocaleString();
+        this.sign = '+';
+        this.transformedContent = this.digitContent;
       }
     }
 
@@ -40,7 +38,7 @@ export class EquationComponentComponent implements OnInit {
         this.operation = null;
       }
     }
-    if (this.digitContent == 0) {
+    if (this.digitContent == '0') {
       this.operation = null;
     }
   }
